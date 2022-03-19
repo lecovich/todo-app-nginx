@@ -37,7 +37,7 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USER_NAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
-      - name: Build and push nginx configs
+      - name: Build and push NGINX configs
         uses: docker/build-push-action@v2
         with:
           push: true
@@ -56,5 +56,4 @@ jobs:
             docker run --rm --detach \
             --name=todo-app-nginx \
             --publish=80:80 \
-            lecovich/todo-app-nginx:${{ steps.variables.outputs.hash }} \
-            nginx -t
+            lecovich/todo-app-nginx:${{ steps.variables.outputs.hash }}
