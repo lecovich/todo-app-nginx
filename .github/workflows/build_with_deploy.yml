@@ -37,10 +37,10 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USER_NAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
-      - name: Build and push config
+      - name: Build and push nginx configs
         uses: docker/build-push-action@v2
         with:
-          context: config
+          context: nginx
           push: true
           tags: |
             ${{ secrets.DOCKER_HUB_USER_NAME }}/todo-app-nginx:latest,
@@ -56,8 +56,6 @@ jobs:
             docker stop todo-app-nginx; \
             docker run --rm --detach \
             --name=todo-app-nginx \
-            --workdir=/app \
             --publish=80:80 \
-            --env VERSION=${{ steps.variables.outputs.hash }} \
             lecovich/todo-app-nginx:${{ steps.variables.outputs.hash }} \
-            nginx
+            nginx -t
