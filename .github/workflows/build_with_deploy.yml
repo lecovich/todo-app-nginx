@@ -40,7 +40,6 @@ jobs:
       - name: Build and push nginx configs
         uses: docker/build-push-action@v2
         with:
-          context: nginx
           push: true
           tags: |
             ${{ secrets.DOCKER_HUB_USER_NAME }}/todo-app-nginx:latest,
