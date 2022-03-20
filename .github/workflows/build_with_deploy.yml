@@ -54,6 +54,8 @@ jobs:
           script: |
             docker stop todo-app-nginx; \
             docker run --rm --detach \
+            --env NGINX_SERVER_NAME=${{ secrets.API_HOST }} \
             --name=todo-app-nginx \
+            --network=todo-app-network \
             --publish=80:80 \
             lecovich/todo-app-nginx:${{ steps.variables.outputs.hash }}

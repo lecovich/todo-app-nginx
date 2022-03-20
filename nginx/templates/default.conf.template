@@ -11,7 +11,7 @@ http {
 
     server {
         listen 80;
-        server_name st1.travellogic.club;
+        server_name ${NGINX_SERVER_NAME};
 
         location / {
             if (-f /home/travellogic/app/maintenance.file) {
