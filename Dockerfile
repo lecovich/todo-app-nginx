@@ -1,3 +1,3 @@
 FROM nginx
 
-COPY nginx/* /etc/nginx/
+COPY nginx /etc/nginx/
